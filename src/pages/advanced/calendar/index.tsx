@@ -24,7 +24,13 @@ export default class Index extends Component {
     },
     mark: [
       {
-        value: '2018/11/11'
+        value: '2018/09/01'
+      },
+      {
+        value: '2018/09/02'
+      },
+      {
+        value: '2018/09/03'
       }
     ]
   }
@@ -76,11 +82,11 @@ export default class Index extends Component {
           <View className='panel'>
             <View className='panel__title'>一般案例</View>
             <View className='panel__content'>
-              <AtCalendar onMonthChange={this.handleMonthChange} />
+              <AtCalendar onMonthChange={this.handleMonthChange} currentDate={'2018/09/02'} marks={mark} />
             </View>
           </View>
 
-          <View className='panel'>
+          {/* <View className='panel'>
             <View className='panel__title'>跳转到指定日期</View>
             <View className='panel__content'>
               <AtCalendar currentDate={now} />
@@ -177,8 +183,8 @@ export default class Index extends Component {
                 </AtButton>
               </View>
             </View>
-          </View>
-        </View>
+          </View>*/}
+        </View> 
       </View>
     )
   }

@@ -30,6 +30,7 @@ export interface PropsBase {
   onDayLongClick?: (item: { value: string }) => void
 
   onMonthChange?: (value: string) => void
+  collapse?: boolean
 }
 
 export interface SingleSelectedProps extends PropsBase {
@@ -64,12 +65,14 @@ export interface DefaultProps {
   isMultiSelect: boolean
 
   selectedDates: Array<Calendar.SelectedDate>
+  collapse: boolean
 }
 
 export interface State {
   generateDate: number
 
   selectedDate: Calendar.SelectedDate
+  collapse: boolean;
 }
 
 export type PropsWithDefaults = Props & DefaultProps

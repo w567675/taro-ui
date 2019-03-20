@@ -26,6 +26,7 @@ export interface Props {
   onSwipeMonth: (vectorCount: number) => void
 
   onLongClick: (item: Calendar.Item) => void
+  collapse: boolean;
 }
 
 export interface State {

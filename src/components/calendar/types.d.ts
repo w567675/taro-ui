@@ -52,6 +52,7 @@ declare namespace Calendar {
     minDate?: DateArg
 
     maxDate?: DateArg
+    collapse?: boolean;
   }
 
   export type List < T > = Array<T>
