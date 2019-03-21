@@ -256,7 +256,7 @@ export default class AtCalendarBody extends Taro.Component<
   }
 
   render() {
-    const { isSwiper } = this.props
+    const { isSwiper, collapse } = this.props
     const { isAnimate, offsetSize, listGroup } = this.state
 
     if (!isSwiper) {
@@ -347,6 +347,7 @@ export default class AtCalendarBody extends Taro.Component<
           onAnimationFinish={this.handleAnimateFinish}
           onTouchEnd={this.handleSwipeTouchEnd}
           onTouchStart={this.handleSwipeTouchStart}
+          style={{height: collapse ? '80rpx' :'480rpx'}}
         >
           {listGroup.map((item, key) => (
             <SwiperItem key={item.value} itemId={key.toString()}>

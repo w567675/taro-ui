@@ -17,6 +17,7 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
     } = this.props
 
     const dayjsDate: Dayjs = dayjs(generateDate)
+    
     const dayjsMinDate: Dayjs | boolean = !!minDate && dayjs(minDate)
     const dayjsMaxDate: Dayjs | boolean = !!maxDate && dayjs(maxDate)
 

@@ -138,7 +138,7 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
     } else {
       const dayjsStart = dayjs(currentDate as Calendar.DateArg)
       start = dayjsStart.startOf('day').valueOf()
-      generateDateValue = collapse ?  dayjsStart.startOf('week').valueOf() : dayjsStart.startOf('month').valueOf()
+      generateDateValue = collapse ?  dayjsStart.valueOf() : dayjsStart.startOf('month').valueOf()
       end = start
     }
     return {
@@ -202,7 +202,6 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
   @bind
   handleSelectDate (e: BaseEvent & { detail: { value: string } }) {
     const { value } = e.detail
-
     const _generateDate: Dayjs = dayjs(value)
     const _generateDateValue: number = _generateDate.valueOf()
 
@@ -264,9 +263,29 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
     }
   }
   handleCollapse () {
-    this.setState({
-      collapse: !this.state.collapse
-    })
+    const {
+      selectedDate,
+      collapse,
+      generateDate,
+    } = this.state;
+    const {
+      isMultiSelect,
+    } = this.props;
+    
+    // 选中日期不在当前月，则直接关闭
+    if(dayjs(generateDate).month() !== dayjs(selectedDate.start).month()) {
+      return this.setState({
+        collapse: !collapse
+      })
+    }
+
+    // 选中日期在当前月，则重新 generateDate = selectedDate.start
+    const stateValue: State = this.getInitializeState(
+      selectedDate.start,
+      isMultiSelect,
+      !collapse
+    )
+    this.setState(stateValue)
   }
 
   render () {
