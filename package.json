@@ -1,5 +1,5 @@
 {
-  "name": "taro-ui",
+  "name": "@w567675/taro-ui",
   "version": "2.0.2",
   "description": "UI KIT for Taro",
   "main": "dist/index.js",
@@ -61,7 +61,7 @@
   "homepage": "https://taro-ui.aotu.io",
   "repository": {
     "type": "git",
-    "url": "git@github.com:nervjs/taro-ui.git"
+    "url": "git@github.com:w567675/taro-ui.git"
   },
   "license": "MIT",
   "dependencies": {
