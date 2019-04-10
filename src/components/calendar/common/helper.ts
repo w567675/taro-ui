@@ -87,7 +87,6 @@ export default function generateCalendarGroup(
 
         list.push(item)
       }
-      console.log(list);
     }
 
     // 展开成显示一

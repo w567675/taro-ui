@@ -1,6 +1,9 @@
 @import '../variables/default.scss';
 @import '../mixins/index.scss';
 
+$at-calendar-main-color: #FFA324;
+$at-calendar-mark-size: 12px;
+
 .at-calendar {
   overflow: hidden;
 
@@ -11,7 +14,7 @@
       @include align-items(center);
 
       height: 72px;
-      color: $at-calendar-header-color;
+      color: $font-color_second;
       text-align: center;
 
       &-item {
@@ -28,7 +31,7 @@
       @include align-items();
       @include flex-wrap(wrap);
 
-      color: $at-calendar-day-color;
+      color: $font-color_primary;
 
       .flex__item {
         @include flex(0 0 calc(100% / 7));
@@ -83,7 +86,7 @@
         }
 
         &--blur {
-          color: #e1e4e7;
+          color: #ddd;
         }
 
         &--selected {
@@ -123,7 +126,7 @@
   &__controller {
     @include display-flex;
     @include align-items(center);
-    @include justify-content(center);
+    @include justify-content(flex-start);
 
     margin-bottom: 20px;
 
@@ -151,9 +154,38 @@
     .controller__info {
       @include flex(0 0 auto);
 
-      font-size: 30px;
+      position: relative;
+      font-size: 32px;
+      font-weight: 700;
+      color: $font-color_primary;
       margin-left: 40px;
       margin-right: 40px;
+
+      &--time {
+        margin-left: 30px;
+      }
+
+      &::after {
+        content: " ";
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        border-width: 1.5PX 1.5PX 0 0;
+        border-color: $primary-color;
+        border-style: solid;
+        transform-origin: center center;
+        position: absolute;
+        top: 50%;
+        margin-top: -7.76px;
+        right: -24px;
+        transition: all ease-in-out 0.2s;
+        transform: rotate(135deg);
+      }
+
+      &--extra {
+        flex: 1;
+        text-align: right;
+      }
     }
   }
 }

@@ -11,13 +11,19 @@ export interface Props {
 
   hideArrow: boolean
 
+  hideTime: boolean;
+
   monthFormat: string
+  timeFormat: string
+  renderExtra?: JSX.Element;
 
   onPreMonth: () => void
 
   onNextMonth: () => void
 
   onSelectDate: (e: BaseEvent) => void
+
+  onSelectTime: (e: BaseEvent) => void
 }
 
 export interface State {}

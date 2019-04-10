@@ -1,7 +1,8 @@
 import bind from 'bind-decorator'
 
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View } from '@tarojs/components'
+import { View, Button } from '@tarojs/components'
+import dayjs from 'dayjs';
 
 import AtButton from '../../../components/button/index'
 
@@ -22,6 +23,8 @@ export default class Index extends Component {
     multiCurentDate: {
       start: Date.now()
     },
+    currentDate: dayjs().format('YYYY-MM-DD'),
+    collapse: true,
     mark: [
       {
         value: '2018/09/01'
@@ -71,9 +74,17 @@ export default class Index extends Component {
   handleMonthChange (arg) {
     console.log('handleMonthChange', arg)
   }
+  handleCollapse() {
+    this.setState({
+      collapse: !this.state.collapse
+    })
+  }
+  handleSelectDate(e) {
+    console.log("handleSelectDate", e)
+  }
 
   render () {
-    const { now, minDate, maxDate, mark, multiCurentDate } = this.state
+    const { now, minDate, maxDate, mark, multiCurentDate, collapse, currentDate } = this.state
     return (
       <View className='page calendar-page'>
         <DocsHeader title='Calendar 日历' />
@@ -82,8 +93,9 @@ export default class Index extends Component {
           <View className='panel'>
             <View className='panel__title'>一般案例</View>
             <View className='panel__content'>
-              <AtCalendar onMonthChange={this.handleMonthChange} currentDate={'2018/09/02'} marks={mark} />
+              <AtCalendar onSelectDate={this.handleSelectDate} onMonthChange={this.handleMonthChange} currentDate={currentDate} marks={mark} renderExtra={<View>343434</View>} collapse={collapse} />
             </View>
+            <Button onClick={this.handleCollapse}>{!collapse ? '折叠' : '展开'}</Button>
           </View>
 
           {/* <View className='panel'>

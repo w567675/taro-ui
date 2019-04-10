@@ -50,6 +50,12 @@ export default class AtFloatLayout extends AtComponent {
   handleTouchMove = e => {
     e.stopPropagation()
   }
+  handleOk = e => {
+    if (_isFunction(this.props.onOk)) {
+      this.props.onOk()
+      this.close()
+    }
+  }
 
   render () {
     const { _isOpened } = this.state
@@ -62,7 +68,9 @@ export default class AtFloatLayout extends AtComponent {
       scrollLeft,
       upperThreshold,
       lowerThreshold,
-      scrollWithAnimation
+      scrollWithAnimation,
+      cancelText,
+      okText,
     } = this.props
 
     const rootClass = classNames(
@@ -72,15 +80,17 @@ export default class AtFloatLayout extends AtComponent {
       },
       this.props.className
     )
-
+    console.log(title)
     return (
       <View className={rootClass} onTouchMove={this.handleTouchMove}>
         <View onClick={this.close} className='at-float-layout__overlay' />
         <View className='at-float-layout__container layout'>
-          {title ? (
+          {(title === '' || title) ? (
             <View className='layout-header'>
-              <Text className='layout-header__title'>{title}</Text>
-              <View className='layout-header__btn-close' onClick={this.close} />
+              <View className='layout-header__cancel' onClick={this.close} >{cancelText || ''}</View>
+              <View className='layout-header__title'>{title}</View>
+              <View className='layout-header__ok' onClick={this.handleOk}>{okText || ''}</View>
+              {/* <View className='layout-header__btn-close' onClick={this.close} /> */}
             </View>
           ) : null}
           <View className='layout-body'>
@@ -107,7 +117,6 @@ export default class AtFloatLayout extends AtComponent {
 }
 
 AtFloatLayout.defaultProps = {
-  title: '',
   isOpened: false,
 
   scrollY: true,
@@ -115,6 +124,7 @@ AtFloatLayout.defaultProps = {
   scrollWithAnimation: false,
 
   onClose: () => {},
+  onOk: () => {},
   onScroll: () => {},
   onScrollToLower: () => {},
   onScrollToUpper: () => {}
@@ -122,6 +132,8 @@ AtFloatLayout.defaultProps = {
 
 AtFloatLayout.propType = {
   title: PropTypes.string,
+  okText: PropTypes.string,
+  cancelText: PropTypes.string,
   isOpened: PropTypes.bool,
   scrollY: PropTypes.bool,
   scrollX: PropTypes.bool,
@@ -131,6 +143,7 @@ AtFloatLayout.propType = {
   lowerThreshold: PropTypes.number,
   scrollWithAnimation: PropTypes.bool,
   onClose: PropTypes.func,
+  onOk: PropTypes.func,
   onScroll: PropTypes.func,
   onScrollToLower: PropTypes.func,
   onScrollToUpper: PropTypes.func

@@ -13,10 +13,13 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
       minDate,
       maxDate,
       monthFormat,
-      hideArrow
+      timeFormat,
+      hideArrow,
+      hideTime
     } = this.props
 
     const dayjsDate: Dayjs = dayjs(generateDate)
+    
     
     const dayjsMinDate: Dayjs | boolean = !!minDate && dayjs(minDate)
     const dayjsMaxDate: Dayjs | boolean = !!maxDate && dayjs(maxDate)
@@ -56,6 +59,16 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
             {dayjsDate.format(monthFormat)}
           </Text>
         </Picker>
+        {!hideTime && <Picker
+          mode='time'
+          onChange={this.props.onSelectTime}
+          value={dayjsDate.format('HH:mm')}
+        >
+          <Text className='controller__info controller__info--time'>
+            {dayjsDate.format(timeFormat)}
+          </Text>
+        </Picker>
+        }
         {hideArrow ? null : (
           <View
             className={classnames(
@@ -67,6 +80,7 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
             onClick={this.props.onNextMonth.bind(this, isMaxMonth)}
           />
         )}
+        <View className="controller__info--extra">{this.props.renderExtra}</View>
       </View>
     )
   }

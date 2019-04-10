@@ -15,6 +15,8 @@ export interface PropsBase {
 
   hideArrow?: boolean
 
+  hideTime?: boolean
+
   isVertical?: boolean
 
   className?: Calendar.classNameType
@@ -31,6 +33,10 @@ export interface PropsBase {
 
   onMonthChange?: (value: string) => void
   collapse?: boolean
+
+  collapsible? :boolean;
+  
+  renderExtra?: JSX.Element;
 }
 
 export interface SingleSelectedProps extends PropsBase {
@@ -57,15 +63,19 @@ export interface DefaultProps {
   currentDate: Calendar.DateArg | Calendar.SelectedDate
 
   monthFormat: string
+  timeFormat: string;
 
   hideArrow: boolean
+
+  hideTime: boolean;
 
   isVertical: boolean
 
   isMultiSelect: boolean
 
   selectedDates: Array<Calendar.SelectedDate>
-  collapse: boolean
+  collapse: boolean;
+  collapsible: boolean;
 }
 
 export interface State {
