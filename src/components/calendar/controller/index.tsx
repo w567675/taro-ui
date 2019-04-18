@@ -5,21 +5,74 @@ import { Text, View, Picker } from '@tarojs/components'
 import { Props, State } from './interface'
 
 export default class AtCalendarController extends Taro.Component<Props, State> {
+  timeArray:string[][];
+  constructor(props) {
+    super(props);
+    const {
+      time,
+    } = this.props;
+    console.log(time);
+    this.timeArray =  this.initTime();
+    let timeIndex = [0, 0];
+    if(time) {
+      const hourTemp = time.split(':')[0];
+      const timeTemp = time.split(':')[1];
+      const hourTempIndex = this.timeArray[0].findIndex(item => item == hourTemp);
+      const timeTempIndex = this.timeArray[1].findIndex(item => item == timeTemp);
+      timeIndex = [hourTempIndex, timeTempIndex];
+      debugger
+    }
+    this.state = {
+      timeIndex,
+    }
+  }
   static options = { addGlobalClass: true }
-
+  
+  initTime  = () => {
+    const hours = Array(24).fill(null).map((_, h) => h < 9 ? '0' + (h + 1) : '' + (h + 1));
+    const times:string[] = [];
+    const step  = this.props.timeStep;
+    for(let i = 0 ; i <= 60 ; i+= step) {
+      times.push(i < 10 ? '0' + i : '' + i);
+    }
+    return [hours, times]
+  }
+  
+  handleOnTimeChange = e => {
+    const timeIndex = e.detail.value;
+    const time = this.timeArray[0][timeIndex[0]] + ':' + this.timeArray[1][timeIndex[1]]
+    this.setState({
+      timeIndex,
+    })
+    this.props.onSelectTime(time);
+  }
   render () {
     const {
       generateDate,
       minDate,
       maxDate,
       monthFormat,
-      timeFormat,
       hideArrow,
-      hideTime
+      time,
+      selectedDate,
+      collapse,
+      hideTime,
     } = this.props
+    const {
+      timeIndex,
+    } = this.state; 
+    console.log(this.timeArray)
+    let dayjsDate: Dayjs = dayjs(generateDate)
 
-    const dayjsDate: Dayjs = dayjs(generateDate)
-    
+
+    if(collapse) {
+      const dayjsSelectData = dayjs(selectedDate.start);
+      if(!dayjsSelectData.isBefore(dayjsDate) && !dayjsSelectData.isAfter(dayjsDate.add(6, 'day'))) {
+        dayjsDate = dayjsSelectData
+      }
+      
+    }
+
     
     const dayjsMinDate: Dayjs | boolean = !!minDate && dayjs(minDate)
     const dayjsMaxDate: Dayjs | boolean = !!maxDate && dayjs(maxDate)
@@ -60,12 +113,13 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
           </Text>
         </Picker>
         {!hideTime && <Picker
-          mode='time'
-          onChange={this.props.onSelectTime}
-          value={dayjsDate.format('HH:mm')}
+          mode="multiSelector"
+          range={this.timeArray}
+          onChange={this.handleOnTimeChange}
+          value={timeIndex}
         >
           <Text className='controller__info controller__info--time'>
-            {dayjsDate.format(timeFormat)}
+            {time}
           </Text>
         </Picker>
         }

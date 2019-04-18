@@ -23,6 +23,7 @@ export default class Index extends Component {
     multiCurentDate: {
       start: Date.now()
     },
+    hideTime: true,
     currentDate: dayjs().format('YYYY-MM-DD'),
     collapse: true,
     mark: [
@@ -76,7 +77,8 @@ export default class Index extends Component {
   }
   handleCollapse() {
     this.setState({
-      collapse: !this.state.collapse
+      collapse: !this.state.collapse,
+      hideTime: !this.state.hideTime,
     })
   }
   handleSelectDate(e) {
@@ -84,7 +86,7 @@ export default class Index extends Component {
   }
 
   render () {
-    const { now, minDate, maxDate, mark, multiCurentDate, collapse, currentDate } = this.state
+    const { now, minDate, maxDate, mark, multiCurentDate, collapse, currentDate, hideTime } = this.state
     return (
       <View className='page calendar-page'>
         <DocsHeader title='Calendar 日历' />
@@ -93,13 +95,14 @@ export default class Index extends Component {
           <View className='panel'>
             <View className='panel__title'>一般案例</View>
             <View className='panel__content'>
-              <AtCalendar onSelectDate={this.handleSelectDate} onMonthChange={this.handleMonthChange} currentDate={currentDate} marks={mark} renderExtra={<View>343434</View>} collapse={collapse} />
+              <AtCalendar onSelectDate={this.handleSelectDate} onMonthChange={this.handleMonthChange} currentDate={currentDate} marks={mark}  renderExtra={<View>343434</View>} collapse={collapse} />
             </View>
             <Button onClick={this.handleCollapse}>{!collapse ? '折叠' : '展开'}</Button>
           </View>
 
           {/* <View className='panel'>
-            <View className='panel__title'>跳转到指定日期</View>
+            <View className='panel__title'>跳转到指
+            定日期</View>
             <View className='panel__content'>
               <AtCalendar currentDate={now} />
               <View className='body_controllers'>

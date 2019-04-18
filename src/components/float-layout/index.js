@@ -80,7 +80,6 @@ export default class AtFloatLayout extends AtComponent {
       },
       this.props.className
     )
-    console.log(title)
     return (
       <View className={rootClass} onTouchMove={this.handleTouchMove}>
         <View onClick={this.close} className='at-float-layout__overlay' />

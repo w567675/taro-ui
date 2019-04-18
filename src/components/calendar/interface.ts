@@ -14,8 +14,10 @@ export interface PropsBase {
   monthFormat?: string
 
   hideArrow?: boolean
+  hideTime?: boolean;
+  time?: string
 
-  hideTime?: boolean
+  timeStep?: number;
 
   isVertical?: boolean
 
@@ -25,13 +27,15 @@ export interface PropsBase {
 
   onClickNextMonth?: () => void
 
-  onSelectDate?: (item: { value: Calendar.SelectedDate }) => void
+  onSelectDate?: (item: { value: Calendar.SelectedDate, time: string }, ) => void
 
   onDayClick?: (item: { value: string }) => void
 
   onDayLongClick?: (item: { value: string }) => void
 
   onMonthChange?: (value: string) => void
+
+  onTimeChange?: (value: string) => void
   collapse?: boolean
 
   collapsible? :boolean;
@@ -63,11 +67,12 @@ export interface DefaultProps {
   currentDate: Calendar.DateArg | Calendar.SelectedDate
 
   monthFormat: string
-  timeFormat: string;
 
   hideArrow: boolean
-
   hideTime: boolean;
+
+  time: string;
+  timeStep: number;
 
   isVertical: boolean
 
@@ -82,6 +87,7 @@ export interface State {
   generateDate: number
 
   selectedDate: Calendar.SelectedDate
+  time: string
   collapse: boolean;
 }
 
