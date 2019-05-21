@@ -30,6 +30,10 @@ export interface AtFloatLayoutProps extends AtComponent {
   onScrollToUpper?: CommonEventFunction
 
   onScrollToLower?: CommonEventFunction
+
+  cancelText?: string
+  okText?: string
+  onOk?: () => void
 }
 
 declare const AtFloatLayout: ComponentClass<AtFloatLayoutProps>

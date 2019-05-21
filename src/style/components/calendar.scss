@@ -91,7 +91,7 @@ $at-calendar-mark-size: 12px;
 
         &--selected {
           color: white;
-          background-color: rgba($color: $at-calendar-main-color, $alpha: 0.7);
+          background-color: $at-calendar-main-color;
 
           &-head {
             border-top-left-radius: 40px;
@@ -112,10 +112,7 @@ $at-calendar-mark-size: 12px;
             background-color: transparent;
 
             .flex__item-container {
-              background-color: rgba(
-                $color: $at-calendar-main-color,
-                $alpha: 0.7
-              );
+              background-color: $at-calendar-main-color,;
             }
           }
         }

@@ -20,7 +20,6 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
       const hourTempIndex = this.timeArray[0].findIndex(item => item == hourTemp);
       const timeTempIndex = this.timeArray[1].findIndex(item => item == timeTemp);
       timeIndex = [hourTempIndex, timeTempIndex];
-      debugger
     }
     this.state = {
       timeIndex,
@@ -29,10 +28,10 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
   static options = { addGlobalClass: true }
   
   initTime  = () => {
-    const hours = Array(24).fill(null).map((_, h) => h < 9 ? '0' + (h + 1) : '' + (h + 1));
+    const hours = Array(24).fill(null).map((_, h) => h < 9 ? '0' + h : '' + h);
     const times:string[] = [];
     const step  = this.props.timeStep;
-    for(let i = 0 ; i <= 60 ; i+= step) {
+    for(let i = 0 ; i < 60 ; i+= step) {
       times.push(i < 10 ? '0' + i : '' + i);
     }
     return [hours, times]
