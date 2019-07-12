@@ -1,6 +1,6 @@
 {
   "name": "@w567675/taro-ui",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "description": "UI KIT for Taro",
   "main": "dist/index.js",
   "main:h5": "dist/h5/index.js",
