@@ -1,7 +1,7 @@
 @import '../variables/default.scss';
 @import '../mixins/index.scss';
 
-$at-badge-border-radius: $at-badge-font-size * 0.7;
+$at-badge-border-radius: $at-badge-font-size * 0.5;
 $at-badge-box-shadow: 0 4px 8px 0 rgba($color: $at-badge-bg-color, $alpha: 0.2);
 
 .at-badge {
@@ -9,14 +9,15 @@ $at-badge-box-shadow: 0 4px 8px 0 rgba($color: $at-badge-bg-color, $alpha: 0.2);
   display: inline-block;
   font-size: 0;
   vertical-align: middle;
+  min-width: 50px;
 
   /* elements */
   &__dot {
     position: absolute;
     right: -6px;
     top: -6px;
-    width: $at-badge-dot-size;
-    height: $at-badge-dot-size;
+    width: 16px;
+    height: 16px;
     border-radius: 50%;
     overflow: hidden;
     background: $at-badge-bg;
@@ -30,12 +31,13 @@ $at-badge-box-shadow: 0 4px 8px 0 rgba($color: $at-badge-bg-color, $alpha: 0.2);
     right: -6PX;
     color: $at-badge-color;
     font-size: $at-badge-font-size;
-    line-height: 1.4;
-    border-radius: $at-badge-border-radius $at-badge-border-radius $at-badge-border-radius 0;
-    background: $at-badge-bg;
-    box-shadow: $at-badge-box-shadow;
+    border-radius: 18px;
+    background: #f56270;
     transform: translate(50%, 0);
     overflow: hidden;
     z-index: 1;
+    min-width: 36px;
+    min-height: 36px;
+    line-height: 36px;
   }
 }

@@ -46,7 +46,7 @@ export default class AtBadge extends AtComponent {
 AtBadge.defaultProps = {
   dot: false,
   value: '',
-  maxValue: 99,
+  maxValue: 999,
   customStyle: {},
   className: '',
 }

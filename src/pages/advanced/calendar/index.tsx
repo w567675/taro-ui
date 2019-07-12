@@ -95,9 +95,9 @@ export default class Index extends Component {
           <View className='panel'>
             <View className='panel__title'>一般案例</View>
             <View className='panel__content'>
-              <AtCalendar onSelectDate={this.handleSelectDate} onMonthChange={this.handleMonthChange} currentDate={currentDate} marks={mark} hideTime={hideTime} time="06:30"  renderExtra={<View>343434</View>} collapse={collapse} />
+              <AtCalendar onSelectDate={this.handleSelectDate} onMonthChange={this.handleMonthChange} currentDate={currentDate} marks={mark} hideTime={hideTime} time="06:30"  renderExtra={<View>343434</View>} />
             </View>
-            <Button onClick={this.handleCollapse}>{!collapse ? '折叠' : '展开'}</Button>
+            {/* <Button onClick={this.handleCollapse}>{!collapse ? '折叠' : '展开'}</Button> */}
           </View>
 
           {/* <View className='panel'>

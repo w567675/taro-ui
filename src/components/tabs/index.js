@@ -179,7 +179,7 @@ export default class AtTabs extends AtComponent {
         key={item.title}
         onClick={this.handleClick.bind(this, idx)}
       >
-        {item.title}
+        <View className='at-tabs__item-title'>{item.title} {item.number > 0 && <View className='at-tabs__item-number'>{item.number > 999 ? '···' : item.number}</View>}</View>
         <View className='at-tabs__item-underline'></View>
       </View>
     })

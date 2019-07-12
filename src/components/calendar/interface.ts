@@ -81,6 +81,8 @@ export interface DefaultProps {
   selectedDates: Array<Calendar.SelectedDate>
   collapse: boolean;
   collapsible: boolean;
+
+  collapseBtn: boolean;
 }
 
 export interface State {

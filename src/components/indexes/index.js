@@ -25,7 +25,7 @@ class AtIndexes extends AtComponent {
     // 右侧导航高度
     this.menuHeight = 0
     // 右侧导航距离顶部高度
-    this.startTop = 0
+    this.starttTop = 0
     // 右侧导航元素高度
     this.itemHeight = 0
     // 当前索引

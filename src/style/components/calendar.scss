@@ -185,6 +185,52 @@ $at-calendar-mark-size: 12px;
       }
     }
   }
+
+  @mixin arrow-common($right) {
+    content: " ";
+    display: inline-block;
+    height: 11.6px;
+    width: 11.6px;
+    border-width: 1.5PX 1.5PX 0 0;
+    border-color: #6C80E5;
+    border-style: solid;
+    transform-origin: center center;
+    position: absolute;
+    top: 50%;
+    right: $right;
+    transition: all ease-in-out 0.2s;
+  }
+
+  &__collapse-btn {
+    position: relative;
+    padding-left: 12px;
+    margin: 10px auto 0 auto;
+    width: 104px;
+    height: 42px;
+    background: #fff;
+    border-radius: 22px;
+    border: 1PX solid #DDD;
+    font-size: 24px;
+    line-height: 42px;
+
+    &.arrow-bottom {
+      &::after {
+        @include arrow-common(15px);
+
+        transform: rotate(135deg);
+        margin-top: -8px;
+      }
+    }
+
+    &.arrow-top {
+      &::after {
+        @include arrow-common(15px);
+
+        transform: rotate(315deg);
+        margin-top: -4px;
+      }
+    }
+  }
 }
 
 .at-calendar-slider__main {

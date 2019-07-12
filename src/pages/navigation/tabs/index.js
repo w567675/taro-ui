@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import { AtTabs, AtTabsPane } from 'taro-ui'
+import { AtTabs, AtTabsPane, AtBadge } from 'taro-ui'
 import DocsHeader from '../../components/doc-header'
 import './index.scss'
 
@@ -25,10 +25,10 @@ export default class Index extends Taro.Component {
   }
   render () {
     const { current1, current2, current3, current4, current5 } = this.state
-    const tabList1 = [{ title: '标签页1' }, { title: '标签页2' }, { title: '标签页3' }]
+    const tabList1 = [{ title: '标签页1', number: 999 }, { title: '标签页2', number: 9999 }, { title: '标签页3', number: 9 }]
     const tabList2 = [
-      { title: '标签页1' },
-      { title: '标签页2' },
+      { title: '标签页1', number: 9 },
+      { title: '标签页2', number: 9 },
       { title: '标签页3' },
       { title: '标签页4' },
       { title: '标签页5' },

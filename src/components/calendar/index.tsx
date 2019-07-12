@@ -327,6 +327,7 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
     this.startY = clientY;
   }
   handleTouchEnd = e => {
+    console.log(this.props.collapsible)
     // 不可折叠
     if(!this.props.collapsible) return;
     
@@ -354,6 +355,7 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
       selectedDates,
       hideTime,
       timeStep,
+      collapseBtn,
     } = this.props as PropsWithDefaults
     return (
       <View className={classnames('at-calendar', className)} 
@@ -391,6 +393,7 @@ export default class AtCalendar extends Taro.Component<Props, Readonly<State>> {
           onLongClick={this.handleDayLongClick}
           collapse={collapse}
         />
+        {collapseBtn  && <View className={`at-calendar__collapse-btn ${collapse ? 'arrow-bottom' : 'arrow-top'}`} onClick={this.handleCollapse.bind(this, !collapse)}>{collapse? '展开' :'收起'}</View> }
       </View>
     )
   }

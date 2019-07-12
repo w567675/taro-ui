@@ -60,7 +60,6 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
     const {
       timeIndex,
     } = this.state; 
-    console.log(this.timeArray)
     let dayjsDate: Dayjs = dayjs(generateDate)
 
 
