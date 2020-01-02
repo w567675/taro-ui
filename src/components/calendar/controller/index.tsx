@@ -28,7 +28,7 @@ export default class AtCalendarController extends Taro.Component<Props, State> {
   static options = { addGlobalClass: true }
   
   initTime  = () => {
-    const hours = Array(24).fill(null).map((_, h) => h < 9 ? '0' + h : '' + h);
+    const hours = Array(24).fill(null).map((_, h) => h <= 9 ? '0' + h : '' + h);
     const times:string[] = [];
     const step  = this.props.timeStep;
     for(let i = 0 ; i < 60 ; i+= step) {
